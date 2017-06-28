@@ -1,0 +1,157 @@
+body{
+    background-image: linear-gradient(-225deg, rgba(44, 216, 213, 0.45) 0%, #C5C1FF 56%, rgba(255, 186, 195, 0.71) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+*{
+    font-family: 'Poiret One', cursive;
+}
+.Wrapper {
+    position: absolute;
+    top: calc(50% - 250px);
+    width: 500px;
+    background: #fff;
+    height: 500px;
+    left: calc(50% - 250px);
+    box-shadow: 0px 0px 50px #2196F3;
+}
+.Inner {
+    width: 460px;
+    background: #fff;
+    height: 500px;
+    left: 20px;
+    top: -23px;
+    position: absolute;
+    box-shadow: 0 0 36px rgba(33, 150, 243, 0.55);
+}
+h1.Title, h1.Clock, h1.ClockTimer {
+    font-size: 60px;
+    font-family: 'Poiret One', cursive;
+    font-weight: 100;
+    text-align: center;
+
+}
+h1.ClockTimer {
+    color: #607D8B;
+    margin-bottom: 0;
+}
+button.SetTime {
+    font-size: 25px;
+    font-family: 'Poiret One', cursive;
+    width: 150px;
+    height: 65px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #00BCD4;
+    border: 1px solid #0097A7;
+    color: #fff;
+}
+button.SetTime:hover {
+    background: #00ACC1;
+}
+.foot {
+    text-align: center;
+}
+.spacer {
+    position: relative;
+    height: 5px;
+    display: block;
+    width: 100%;
+}
+.PopUpBg{
+
+}
+.PopUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 500;
+}
+input[type="text"] {
+    width: 155px;
+    left: 15px;
+    position: relative;
+    font-size: 28px;
+    font-family: 'Poiret One', cursive;
+    border: 1px solid #80CBC4;
+    top: 15px;
+}
+.PopUpBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(69, 90, 100, 0.45);
+    z-index: 250;
+}
+.PopUp {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 175px);
+    z-index: 500;
+    width: 350px;
+    height: 150px;
+    background: #fff;
+}
+.PopUp button.SetTime {
+    position: relative;
+    top: 29px;
+    left: calc(50% - 75px);
+}
+.PopUp span.Close {
+    position: absolute;
+    z-index: 600;
+    top: -23px;
+    right: -22px;
+    background: #fff;
+    color: #F44336;
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
+    border: 1px solid #F44336;
+    text-align: center;
+    line-height: 29px;
+    font-weight: 700;
+}
+div.Text {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-size: 27px;
+    margin-bottom: 20px;
+}
+/*******************************/
+.wave {
+    opacity: .4;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #0af;
+    width: 700px;
+    height: 700px;
+    margin-left: -350px;
+    margin-top: -350px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 3000ms infinite linear;
+}
+.wave.-three {
+    animation: drift 5000ms infinite linear;
+    background: #00BCD4;
+    opacity: 0.3;
+}
+.wave.-two {
+    animation: drift 7000ms infinite linear;
+    opacity: .2;
+    background: #ff00eb;
+}
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+    from {
+        transform: rotate(360deg);
+    }
+}

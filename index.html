@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Alarm clock by David Absalan</title>
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div style="display: none" class='wave -one'></div>
+  <div style="display: none" class='wave -two'></div>
+  <div style="display: none" class='wave -three'></div>
+<div class="Wrapper">
+    <div class="Inner">
+        <h1 class="Title">Alarm Clock</h1>
+        <h1 class="Clock">10:20:35</h1>
+        <h1 class="ClockTimer">00:00</h1>
+        <div class="Text">The click will alarm on the specified.</div>
+        <div class="spacer"></div>
+        <div class="foot">
+            <button class="SetTime">
+                Set Time
+            </button>
+        </div>
+    </div>
+</div>
+<div class="PopUpBg" style="display: none">
+    <div class="PopUp">
+        <span class="Close">X</span>
+        <input type="text" class="SetHours" placeholder="Eg: 5">
+        <input type="text" class="SetMins" placeholder="Eg: 10">
+        <button class="SetTime StartTimer">
+            START
+        </button>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('input[type="text"]').keydown(function (e) {
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+            (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+            (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+            (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+            return;
+        }
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+    var time = $(".Clock");
+    setInterval(function () {
+        var d = new Date();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+        var ampm = hours <= 11 ? "am" : "pm";
+        $(time).html(hours + ':' + minutes + ':' + seconds);
+    }, 1000);
+
+    $(".SetTime").click(function() {
+        $(".PopUpBg").show();
+    });
+    $(".Close").click(function() {
+        $(".PopUpBg").hide();
+    });
+    function TimeConv(Hr, Min) {
+        var MiniMin = Min * 60000;
+        var Hrs = Hr * 3600000;
+        return MiniMin + Hrs;
+    }
+    $(document).on("click", ".StartTimer", function() {
+        var HrEl = $(".SetHours");
+        var MinEl = $(".SetMins");
+        if (HrEl.val() !== "") {
+            var HoursVal = HrEl.val();
+        }else{
+            var HoursVal = "00";
+        }
+
+        if (MinEl.val() !== "") {
+            var Mins = MinEl.val();
+        }else{
+            var Mins = "00";
+        }
+        var audio = new Audio('http://alien.solutions/alarma.mp3');
+
+       setTimeout(function() {
+            $(".wave").show();
+            setTimeout(function() {
+                $(".wave").hide();
+            }, 25000);
+           audio.play();
+       }, TimeConv(parseInt(HoursVal, 10), parseInt(Mins, 10)));
+
+        $(".ClockTimer").text(parseInt(HoursVal, 10) + ':' + parseInt(Mins, 10));
+        $(".PopUpBg").hide();
+    });
+});
+</script>
+</body>
+</html>
